@@ -1,0 +1,11 @@
+# Logs
+*.log
+
+# Libraries
+/node_modules
+/package-lock.json
+/yarn.lock
+
+# IDE
+/.idea
+
