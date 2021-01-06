@@ -17,15 +17,18 @@
           {{steps[activeIndex].text}}
         </div>
         <ul class="steps-list">
-          <li :class="getItemClasses(index)" v-for="(item, index) in steps" :key="item" @click="setActive(index)">
+          <li :class="['steps-item', {'active': activeIndex === index, 'done': activeIndex > index}]"
+            v-for="(item, index) in steps" :key="item" @click="setActive(index)">
             <span>{{index+1}}</span> {{item.title}}
           </li>
         </ul>
-        <div>
-          <button class="btn" @click="prev" :disabled="isFirstStep" v-show="!isDone">Назад</button>
-          <button class="btn primary" @click="nextOfFinish" v-show="!isDone">
+        <div v-if="!isDone">
+          <button class="btn" @click="prev" :disabled="isFirstStep">Назад</button>
+          <button class="btn primary" @click="nextOfFinish">
             {{isLastStep !== true ? 'Вперёд' : 'Завершить'}}
           </button>
+        </div>
+        <div v-else>
           <button class="btn" @click="reset" v-show="isDone">Начать заново</button>
         </div>
       </div>

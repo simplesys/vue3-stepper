@@ -13,17 +13,6 @@ const App = {
     }
   },
   methods: {
-    getItemClasses(index) {
-      let classes = 'steps-item';
-
-      if (index < this.activeIndex) {
-        classes += ' done';
-      } else if (index === this.activeIndex) {
-        classes += ' active';
-      }
-
-      return classes;
-    },
     prev() {
       if (this.activeIndex > 0) {
         this.activeIndex--;
@@ -40,10 +29,9 @@ const App = {
         this.isDone = true;
       }
     },
-    setActive(idx) {
-      console.log(idx);
-      if (idx < this.steps.length) {
-        this.activeIndex = idx;
+    setActive(index) {
+      if (index < this.steps.length) {
+        this.activeIndex = index;
       }
     }
   },
@@ -55,9 +43,9 @@ const App = {
       return this.activeIndex === this.finalKey && this.isDone === false;
     },
     finalKey() {
-      return this.steps.length - 1
+      return this.steps.length - 1;
     }
   }
 }
 
-Vue.createApp(App).mount('#app')
+Vue.createApp(App).mount('#app');
